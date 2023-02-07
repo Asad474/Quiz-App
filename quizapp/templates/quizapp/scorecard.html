@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center fw-bolder mt-5">Scorecard</h1>
+        <table class="table table-score">
+            <thead class="bg-dark text-white fs-3 fw-bolder">
+                <tr>
+                    <th scope="col">Topic</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="fs-5 table-body">
+                {% for t,s in scorecard.items %}
+                    <tr>
+                        <td>{{t}}</td>
+                        <td>{{s.score}}</td>
+                        <td>{{s.date}}</td>
+                        <td><a href="{% url 'viewscores' s.sub_topic.id %}" class="btn btn-primary">View</a></td>
+                    </tr>
+                {% endfor %}    
+            </tbody>
+          </table>
+    </div>
+{% endblock %}

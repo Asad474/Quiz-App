@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <div class="instructions">
+        <header class="inst-header">
+            <h1 class="text-center fw-bolder">Instructions for the quiz</h1>
+            <h2 class="text-center fw-bold ">Topic : {{t}}</h2>
+        </header>
+
+        <div class="mt-5 mx-3">
+            <ol class="fs-3 inst-list">
+                <li>You have to attempt all the questions.</li>
+                <li>Total no of questions : {{count}}</li>
+                <li>One mark is rewarded for each correct answer.</li>
+                <li>There will be no negative marking.</li>
+            </ol>
+
+            <form action="{% url 'questionsubtopic' sub_id %}" method="post">
+                {%csrf_token%}
+                <div class="d-grid gap-2 col-10 mx-auto start-quiz">
+                    <button class="btn btn-primary btn-lg" type="submit">Get Started</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}    

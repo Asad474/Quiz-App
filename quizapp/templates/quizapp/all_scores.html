@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center fw-bolder mt-5">{{sub_t}} scores</h1>
+        <table class="table table-score">
+            <thead class="bg-dark text-white fs-3 fw-bolder">
+                <tr>
+                    <th scope="col">No of correct answers</th>
+                    <th scope="col">No of questions</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody class="fs-4 table-body">
+                {% for s in scores %}
+                    <tr>
+                        <td>{{s.no_of_correctanswers}}</td>
+                        <td>{{s.no_of_questions}}</td>
+                        <td>{{s.score}}</td>
+                        <td>{{s.date}}</td>
+                    </tr>
+                {% endfor %}    
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

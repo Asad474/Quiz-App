@@ -1,0 +1,38 @@
+{%extends 'main.html'%}
+
+{%block content%}
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center bg-success">                    
+                        <form action="" method="post">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                {%csrf_token%}
+                                <h2 class="fw-bold mb-2 text-uppercase">Sign Up here</h2>
+                                <p class="text-white-50 mb-5">Please fill out the details to sign up</p>
+
+                                {%for f in form%}
+                                    <div class="form-outline form-white mb-4">
+                                        {{f}}
+                                    </div>
+                                {%endfor%}
+                
+                                <button class="btn btn-outline-light btn-lg mt-5" type="submit">Sign Up</button>
+                
+                            </div>
+                        </form>
+            
+                        <div>
+                            <p class="mb-0">Already have an account ? <a href="{%url 'loginuser'%}" class="text-white-50 fw-bold">Sign In</a>
+                            </p>
+                        </div>
+        
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}

@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="quiz-questions">
+        <div class="qs my-5" style="display: none;">
+            <div class="question-header">
+                <span class="fs-3 fw-bold" id="question"></span>
+            </div>    
+
+            <div class="question-body">
+                <div class="mt-2" id="answer1">
+                    <input type="radio" id="option1" name="option">
+                    <label for="option1" class="px-2 fs-4" id="op_1"></label>
+                </div>
+
+                <div class="mt-2" id="answer2">
+                    <input type="radio" id="option2" name="option">
+                    <label for="option2" class="px-2 fs-4" id="op_2"></label>
+                </div>
+
+                <div class="mt-2" id="answer3">
+                    <input type="radio" id="option3" name="option">
+                    <label for="option3" class="px-2 fs-4" id="op_3"></label>
+                </div>
+
+                <div class="mt-2" id="answer4">
+                    <input type="radio" id="option4" name="option">
+                    <label for="option4" class="px-2 fs-4" id="op_4"></label>
+                </div>
+
+                <div class="mt-2" id="correctanswer">
+                    <input type="hidden" id="correct_answer">
+                </div>
+
+                <div class="d-grid gap-2 col-10 mx-auto my-3">
+                    <input type="button" class="btn btn-lg btn-primary next" value="next">
+                </div>
+            </div>    
+        </div>
+
+        <form action="{% url 'score' sub_id%}" method="post">
+            <div class="d-grid gap-2 col-10 mx-auto my-3">
+                {% csrf_token %}
+                <input type="hidden" name="score" id="scores">
+                <input type="hidden" name="total-questions" id="total-questions">
+                <button type="submit" class="btn btn-lg btn-primary viewscore" style="display: none;">View Score</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

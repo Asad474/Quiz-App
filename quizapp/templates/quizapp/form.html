@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="form-layout">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="question-form">
+                <label for="{{ form.topic_name.label }}" class="fs-3 fw-bold">{{ form.topic_name.label }} - </label>
+                {{ form.topic_name }}
+            </div>
+
+            <div class="question-form">
+                <label for="{{ form.sub_topic_name.label }}" class="fs-3 fw-bold">{{ form.sub_topic_name.label }} - </label>
+                {{ form.sub_topic_name }}
+            </div>
+
+            <div class="question-form">
+                <label for="{{ form.question.label }}" class="fs-3 fw-bold">{{ form.question.label }} - </label>
+                {{ form.question }}
+            </div>
+
+            <div class="question-form">
+                <label for="{{ form.option_1.label }}" class="fs-3 fw-bold">{{ form.option_1.label }} - </label>
+                {{ form.option_1 }}
+            </div>
+
+            <div class="question-form">
+                <label for="{{ form.option_2.label }}" class="fs-3 fw-bold">{{ form.option_2.label }} - </label>
+                {{ form.option_2 }}
+            </div>
+
+            <div class="question-form">
+                <label for="{{ form.option_3.label }}" class="fs-3 fw-bold">{{ form.option_3.label }} - </label>
+                {{ form.option_3 }}
+            </div>
+
+            <div class="question-form">
+                <label for="{{ form.option_4.label }}" class="fs-3 fw-bold">{{ form.option_4.label }} - </label>
+                {{ form.option_4 }}
+            </div>
+
+            <div class="question-form">
+                <label for="{{ form.correct_answer.label }}" class="fs-3 fw-bold">{{ form.correct_answer.label }} - </label>
+                {{ form.correct_answer }}
+            </div>
+
+            <div class="d-grid gap-2 col-10 mx-auto mt-5">
+                <button class="btn btn-lg btn-primary" type="submit">Add question</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

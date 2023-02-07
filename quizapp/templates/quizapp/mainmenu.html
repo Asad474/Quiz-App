@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="topics-content text-white">
+        <header class="topics-header">
+            <h1 class="text-center fw-bolder text-uppercase mt-3">Quiz</h1>
+            <h2 class="text-center fw-bold pt-3">Topics</h2>
+        </header>
+
+        <ol class="fw-bolder topics">
+            {% for topic, items in topics_dict.items %}
+                <li class="fs-4 topic-name">
+                    <span class="fw-bold text-white">{{ topic }}</span>
+                </li>
+                <ul class="sub-topics">
+                    {% for item in items %}
+                        <li class="fs-4">
+                            <a href="{% url 'instructions' item.id %}" style="color: black; text-decoration: none" class="s text-info">{{item.sub_topic}}</a>
+                        </li>           
+                    {%endfor%}
+                </ul>
+
+            {% endfor %}    
+        </ol>    
+    </div>
+{% endblock %}

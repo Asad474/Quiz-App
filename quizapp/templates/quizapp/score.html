@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="quiz-score">
+            {% if percentage >= 50 %}
+                <h2 class="fw-bold">Congrats!</h2>
+            {% else %}    
+                <h2 class="fw-bold">Better luck next time!</h2>
+            {% endif %}    
+            
+            <h1 class="correct-answer">{{percentage}}% Score</h1>
+            <h3 class="fw-bold">Quiz completed successfully</h3>
+            <h3>You give <span class="correct-answer">{{correct_answers}} right answers</span> out of {{total_questions}} questions in {{sub_t}} quiz.</h3>
+
+            <div class="quiz-score-buttons">
+                <div class="menu-button">
+                    <a href="{% url 'mainmenu' %}" class="btn btn-primary btn-lg">Main Menu</a>
+                </div>
+                <div class="retest-button">
+                    <a href="{% url 'instructions' sub_t.id %}" class="btn btn-primary btn-lg mx-5">Retake the quiz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

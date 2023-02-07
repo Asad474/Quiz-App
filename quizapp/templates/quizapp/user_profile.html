@@ -1,0 +1,25 @@
+{%extends 'main.html'%}
+
+{%block content%}
+    <section>
+        <div class="container">
+            <div class="text-center pb-5">
+                <a href="{{u.avatar.url}}"><img class="rounded-circle py-4" id="profile-pic-userpage" src="{{u.avatar.url}}" /></a>
+                <h4 class="text-center fw-bold"><a href="{% url 'userprofile' %}" class="text-dark">@{{u.username}}</a></h4>
+                <h4 class="text-center fw-bold">{{u.email}}</h4>
+            </div>            
+
+            <div class="text-center">
+                <button class="btn btn-lg btn-dark rounded" id="edit"><a href="{% url 'update-profile' %}" class="text-white">Edit Profile</a></button>
+                <button class="btn btn-lg btn-dark rounded mx-3" id="edit"><a href="{% url 'home' %}" class="text-white">Home</a></button>
+            </div>
+
+            <div class="user-container mt-5">
+                <div>
+                    <h3 class="text-center fw-bolder pt-3 pb-2">Bio</h3>
+                    <p class="text-center fs-5 pt-3 pb-4 lh-sm">{{u.bio}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}
