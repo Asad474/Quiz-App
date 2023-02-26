@@ -136,7 +136,7 @@ function quizpage(){
     const pathname = window.location.pathname
     const id = pathname.charAt(pathname.length-2)
     let url = ''
-    url = `http://127.0.0.1:8000/api/subtopics/questions/${id}/`
+    url = `/api/subtopics/questions/${id}/`
     
     fetch(url)
     .then(resp => resp.json())
@@ -165,24 +165,6 @@ function quizpage(){
 
                 questions.style.display = 'none'
                 result.style.display = 'inherit'
-            //     result.addEventListener('submit', () => { 
-            //         d = {
-            //             arr1 : data,
-            //             arr2 : select_option
-            //         } 
-    
-            //         fetch(`http://127.0.0.1:8000/socre/${id}/`, {
-            //             method: 'POST',
-            //             headers: {
-            //               'Content-Type': 'application/json'
-            //             },
-            //             body: JSON.stringify(d)
-            //         })
-            //         .then(response => response.json())
-            //         .then(data => {
-            //             console.log(data);
-            //         });
-            //     })
             }
 
             else if (i < data.length){
@@ -190,8 +172,6 @@ function quizpage(){
                 ques(data[i], i+1)
             }
         })
-
-        // view.addEventListener('click', showanswers(data, select_option))
     })
 }
 
