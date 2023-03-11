@@ -27,5 +27,5 @@ DEBUG = True
 Running the app 
 
 ```bash 
-python manage.py runserver
+$ python manage.py runserver
 ```
