@@ -5,11 +5,6 @@
         <form action="" method="post">
             {% csrf_token %}
             <div class="question-form">
-                <label for="{{ form.topic_name.label }}" class="fs-3 fw-bold">{{ form.topic_name.label }} - </label>
-                {{ form.topic_name }}
-            </div>
-
-            <div class="question-form">
                 <label for="{{ form.sub_topic_name.label }}" class="fs-3 fw-bold">{{ form.sub_topic_name.label }} - </label>
                 {{ form.sub_topic_name }}
             </div>

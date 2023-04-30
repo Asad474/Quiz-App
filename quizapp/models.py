@@ -31,7 +31,6 @@ class Subtopic(models.Model):
 
 
 class Quizquestion(models.Model):
-    topic_name = models.ForeignKey(Quiztopic, on_delete = models.CASCADE)
     sub_topic_name = models.ForeignKey(Subtopic, on_delete = models.CASCADE)
     question = models.CharField(unique = True, max_length = 500)
     option_1 = models.CharField(max_length = 100)
