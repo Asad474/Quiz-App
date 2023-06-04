@@ -7,7 +7,7 @@ class MyUser(AbstractUser):
     bio = models.TextField(
         default = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     )
-    avatar = models.ImageField(null = True, default = "captain-america.jpg", verbose_name = 'Profile pic', upload_to = 'images/')
+    avatar = models.ImageField(null = True, default = "images/captain-america.jpg", verbose_name = 'Profile pic', upload_to = 'images/')
 
     USERNAME_FIELD = 'email' 
     REQUIRED_FIELDS = ['username']
