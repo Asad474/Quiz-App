@@ -7,7 +7,7 @@ class MyUser(AbstractUser):
     bio = models.TextField(
         default = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     )
-    avatar = models.ImageField(null = True, default = "captain-america.jpg", verbose_name = 'Profile pic')
+    avatar = models.ImageField(null = True, default = "captain-america.jpg", verbose_name = 'Profile pic', upload_to = 'images/')
 
     USERNAME_FIELD = 'email' 
     REQUIRED_FIELDS = ['username']
@@ -18,6 +18,7 @@ class MyUser(AbstractUser):
 
 class Quiztopic(models.Model):
     topics = models.CharField(unique = True, max_length = 100)
+    image = models.ImageField(default = "captain-america.jpg", upload_to = 'images/')
     def __str__(self) -> str:
         return self.topics
 
@@ -25,6 +26,7 @@ class Quiztopic(models.Model):
 class Subtopic(models.Model):
     topic = models.ForeignKey(Quiztopic, on_delete = models.CASCADE)
     sub_topic = models.CharField(unique = True, max_length = 100)
+    image = models.ImageField(default = "captain-america.jpg", upload_to = 'images/')
 
     def __str__(self) -> str:
         return self.sub_topic

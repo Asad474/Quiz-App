@@ -11,17 +11,28 @@ from math import *
 from django.http import HttpResponse
 
 # Create your views here.
-@login_required(login_url = 'loginuser')
 def home(request):
     return render(request, 'quizapp/home.html')
+
+
+def about(request):
+    return render(request, 'quizapp/about.html')
 
 
 @login_required(login_url = 'loginuser')
 def mainmenu(request):
     topics =  Quiztopic.objects.all()
-    topics_dict = {key : key.subtopic_set.all().values() for key in topics}
+    # topics_dict = {key : key.subtopic_set.all().values() for key in topics}
 
-    context = {'topics_dict' : topics_dict}
+    context = {'topics' : topics, 'title' : 'topics'}
+    return render(request, 'quizapp/mainmenu.html', context)
+
+
+@login_required(login_url = 'loginuser')
+def subtopics(request, pk):
+    topic = Quiztopic.objects.get(id = pk)
+    sub_topics = Subtopic.objects.filter(topic = topic)
+    context = {'sub_topics' : sub_topics, 'title' : 'sub_topics', 't' : topic}
     return render(request, 'quizapp/mainmenu.html', context)
 
 
@@ -124,11 +135,15 @@ def loginpage(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        valuenext= request.GET.get('next')
 
         try:
             user = authenticate(request, email = email, password = password)
-            login(request,user)
-            return redirect('home')
+            login(request, user)
+            if valuenext == '' or valuenext == None:
+                return redirect('home')
+            
+            return redirect(valuenext)
 
         except:
             messages.error(request, 'Email or Password is invalid!!!')
@@ -150,12 +165,13 @@ def registeruser(request):
             form = SignUpForm(request.POST)
 
             if form.is_valid:                
-                user = form.save()
+                user = form.save(commit = False)
                 subject = 'Welcome to QuizApp!!!'
                 mesg = f'Hi {user.username}, thank you for registering!!!'
                 host_email = settings.EMAIL_HOST_USER
                 user_email_list = [user.email,]
                 send_mail(subject, mesg, host_email, user_email_list)
+                form.save()
                 messages.success(request, f'Hi {user.username}, thank you for registering!!!')
                 return redirect('loginuser')
 
@@ -171,10 +187,10 @@ def registeruser(request):
         if {'username' : username} in all_users_username:
             messages.error(request, f'User with username "{username}" already exists!!!')
 
-        if {'email' : email} in all_users_email:
+        elif {'email' : email} in all_users_email:
             messages.error(request, 'User with this email id already exists!!!')    
 
-        if password1 != password2:
+        elif password1 != password2:
             messages.error(request ,'Password and Confirm Password are not matching with each other!!!')
 
         else:

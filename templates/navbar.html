@@ -1,35 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-light nav-bg">
-    <a class="navbar-brand px-3 text-white" href="{% url 'home' %}">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav text-white nav-links">
-            {% if request.user.is_superuser %}
-                <li class="nav-item active px-2">
-                    <a class="nav-link text-white" href="{% url 'home' %}admin">Admin</a>
-                </li>
-                <li class="nav-item active px-2">
-                    <a class="nav-link text-white" href="{% url 'question-form' %}">Add Questions</a>
-                </li>
-            {% endif %}    
+<nav>
+    <div class="left-side">
+      <div class="company-tag">Quiz App</div>
+    </div>
 
-            {% if request.user.is_authenticated %}
-                <li class="nav-item active px-2">
-                    <a class="nav-link text-white" href="{% url 'scorecard' %}">Scorecard</a>
-                </li>
-                <div class="pic-nav">
-                    <img class="rounded-circle py-2" id="profile-pic" src="{{user.avatar.url}}" />
-                    <span class="text-white fs-3 fw-bold dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></span>
-                        @{{user.username}}
-                    </span>
-                    <ul class="dropdown-menu bg-dark">
-                        <li><a class="dropdown-item text-warning" href="{% url 'userprofile' %}">User Page</a></li>
-                        <li><a class="dropdown-item text-warning" href="{% url 'update-profile' %}">Edit Profile</a></li>
-                        <li><a class="dropdown-item text-warning" href="{% url 'logoutuser' %}">Logout</a></li>
-                    </ul>                
-                </div>
-            {% endif %}    
-        </ul>    
+    <div class="middle-side">
+      <ul>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'home' %}">Home</a></li>
+
+        {% if request.user.is_authenticated %}
+          <li><a href="{% url 'scorecard' %}">Scorecard</a></li>
+          <li><a href="{% url 'userprofile' %}">Userprofile</a></li>
+        {% endif %}
+
+        {% if request.user.is_superuser %}
+          <li><a href="{% url 'home' %}admin">Admin</a></li>
+          <li><a href="{% url 'question-form' %}">Add Questions</a></li>
+        {% endif %}  
+      </ul>
+    </div>
+
+    <div class="right-side">
+        {% if request.user.is_authenticated %} 
+          <button class="signin-btn"> <a href="{% url 'logoutuser' %}">Sign Out</a></button>
+        {% else %}  
+          <button class="signin-btn"> <a href="{% url 'loginuser' %}">Sign In</a></button> 
+        {% endif %}
     </div>
 </nav>

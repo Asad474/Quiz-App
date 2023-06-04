@@ -1,26 +1,64 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <div class="topics-content text-white">
-        <header class="topics-header">
-            <h1 class="text-center fw-bolder text-uppercase mt-3">Quiz</h1>
-            <h2 class="text-center fw-bold pt-3">Topics</h2>
-        </header>
+    <style>
+        .topics-container {
+            display: grid;
+            background-color: #F4F6F7;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+            margin: 40px 10%;
+        }
 
-        <ol class="fw-bolder topics">
-            {% for topic, items in topics_dict.items %}
-                <li class="fs-4 topic-name">
-                    <span class="fw-bold text-white">{{ topic }}</span>
-                </li>
-                <ul class="sub-topics">
-                    {% for item in items %}
-                        <li class="fs-4">
-                            <a href="{% url 'instructions' item.id %}" style="color: black; text-decoration: none" class="s text-info">{{item.sub_topic}}</a>
-                        </li>           
-                    {%endfor%}
-                </ul>
+        .topic {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
 
-            {% endfor %}    
-        </ol>    
-    </div>
+        .img-top{
+            height: 150px;
+            width: 150px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px){
+            .topics-container{
+                display: flex;
+                flex-direction: column;
+                width: 75%;
+                margin-left: 10%;
+            }
+        }
+    </style>
+
+    {% if title == 'topics' %}
+        <h1 class="text-center my-4">Topics</h1>
+
+        <div class="topics-container">
+            {% for topic in topics %}
+                <div class="topic">
+                    <img src="{{ topic.image.url }}" class="img-top" alt="..."><br>
+                    <a href="{% url 'subtopics' topic.id %}" class="fs-4">{{ topic }}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+    {% else %} 
+        <h1 class="text-center my-4">{{t}} Quiz</h1>
+
+        <div class="topics-container">
+            {% for sub_topic in sub_topics %}
+                <div class="topic">
+                    <img src="{{ sub_topic.image.url }}" class="img-top" alt="..."><br>
+                    <a href="{% url 'instructions' sub_topic.id %}" class="fs-4">{{ sub_topic }}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+    {% endif %}
 {% endblock %}

@@ -104,10 +104,10 @@ function ques(data, no){
     option4.value = data.option_4
     correct.value = data.correct_answer
 
-    answer1.style.backgroundColor = 'black'
-    answer2.style.backgroundColor = 'black'
-    answer3.style.backgroundColor = 'black'
-    answer4.style.backgroundColor = 'black'
+    answer1.style.backgroundColor = '#F2F4F4'
+    answer2.style.backgroundColor = '#F2F4F4'
+    answer3.style.backgroundColor = '#F2F4F4'
+    answer4.style.backgroundColor = '#F2F4F4'
 
     option1.addEventListener('input', (e) => {
         selectedOption = option1.value;

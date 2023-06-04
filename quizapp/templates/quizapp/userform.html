@@ -2,13 +2,13 @@
 
 {%block content%}
     <section>
-        <div class="container py-5 h-100">
+        <div class="container edit-profile pt-5 pb-3 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-9 col-lg-6 col-xl-10">
-                <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center bg-success">                    
+                <div class="card text-dark" style="border-radius: 1rem;">
+                    <div class="card-body text-center loginlogout">                    
                         <form action="" method="post" enctype="multipart/form-data">
-                            <div class="mb-md-5 mt-md-4 pb-5">
+                            <div class="md-5 mt-md-4 pb-5">
                                 {%csrf_token%}
                                 <h1 class="fw-bold pb-5 text-uppercase">Update your profile</h1>
 
@@ -19,7 +19,7 @@
                                     </div>
                                 {%endfor%}
                 
-                                <button class="btn btn-outline-light btn-block btn-lg mt-5" type="submit">Update</button>
+                                <button class="btn btn-info btn-block btn-lg mt-5" type="submit">Update</button>
                 
                             </div>
                         </form>        
