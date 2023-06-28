@@ -15,9 +15,10 @@ from django.contrib.messages import constants as messages
 import os 
 import dj_database_url
 
-import environ
-env = environ.Env()
-environ.Env.read_env()
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-secondary',
@@ -35,10 +36,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True
 
 ALLOWED_HOSTS = ['quiz-app-biin.onrender.com', '127.0.0.1']
 
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'quizproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-DATABASE_URL = os.environ.get('DATABASE_URL')
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 DATABASES = {
     'default' : dj_database_url.config(default = DATABASE_URL, conn_max_age = 1000)
@@ -151,8 +152,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #SMTP Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ.get('MAIL_HOST')
+EMAIL_HOST = os.getenv('MAIL_HOST')
 EMAIL_USE_TLS = True
-EMAIL_PORT = os.environ.get('MAIL_PORT')
-EMAIL_HOST_USER = os.environ.get('HOST_EMAIL')
-EMAIL_HOST_PASSWORD = os.environ.get('HOST_PASSWORD')
+EMAIL_PORT = os.getenv('MAIL_PORT')
+EMAIL_HOST_USER = os.getenv('HOST_EMAIL')
+EMAIL_HOST_PASSWORD = os.getenv('HOST_PASSWORD')
