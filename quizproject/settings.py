@@ -152,8 +152,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #SMTP Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = os.getenv('MAIL_HOST')
 EMAIL_USE_TLS = True
 EMAIL_PORT = os.getenv('MAIL_PORT')
 EMAIL_HOST_USER = os.getenv('HOST_EMAIL')
 EMAIL_HOST_PASSWORD = os.getenv('HOST_PASSWORD')
+DEFAULT_FROM_EMAIL=EMAIL_HOST_USER
